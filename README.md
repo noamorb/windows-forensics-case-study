@@ -6,6 +6,14 @@ I recovered an embedded Word document using Python and verified all 19 ZIP entri
 
 [DOCX recovery](#1-recovering-an-embedded-docx) · [Memory and DNS findings](#2-windows-memory-and-dns-correlation)
 
+## Investigation workflow
+
+| Step | Tool | What I checked |
+| --- | --- | --- |
+| Locate and recover the document | Python, ZIP signatures | Located the embedded archive, then checked its internal format and CRCs. |
+| Identify processes and network records | Volatility 3 | Compared process lists, checked the parent process and identified the endpoint associated with PID 2800. |
+| Compare with packet evidence | TShark, Hunter | Checked whether the destination IP appeared in the DNS answers and reviewed the timestamps to see what could be linked. |
+
 ## 1. Recovering an embedded DOCX
 
 The input, `carver.001`, was 165,884 bytes. File identification reported a ZIP archive with prepended data. A signature scan located the first ZIP local header at byte offset 111,316. Python's ZIP directory parser agreed with that offset. I copied the byte range from that offset to the end of the sample and inspected the resulting package without opening it in Word.

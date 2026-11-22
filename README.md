@@ -1,8 +1,10 @@
 # Windows Forensics Lab Case Study
 
-Noam Orbach | Digital forensics portfolio
+A cybersecurity lab case study by **Noam Orbach** ([noamorb](https://github.com/noamorb)).
 
-This case study documents two lab exercises: recovering an embedded Word document from a binary sample and correlating a Windows memory artifact with DNS evidence from a separate packet capture.
+I recovered an embedded Word document using Python and verified all 19 ZIP entries. In a Windows memory image, I used Volatility 3 to associate a TCP record with a process, then used TShark output from a separate capture to cross-check the destination IP.
+
+[DOCX recovery](#1-recovering-an-embedded-docx) · [Memory and DNS findings](#2-windows-memory-and-dns-correlation)
 
 ## 1. Recovering an embedded DOCX
 
@@ -35,4 +37,6 @@ The records share the IP address `104.28.16.29`. The memory endpoint had no repo
 
 Memory image SHA-256: `726a454b6bd3b093af4c6f60920a0e404938f37323edb6b685f8b1f637b876c8`.
 
-Related project: [Hunter DNS Matcher](https://github.com/noamorb/hunter-dns-matcher), used to extract and verify the DNS evidence. Lab analysis was run in Kali Linux by Noam Orbach. AI assisted with scripting, troubleshooting and drafting.
+## Attribution
+
+Noam Orbach ran the lab analysis in Kali Linux. [Hunter DNS Matcher](https://github.com/noamorb/hunter-dns-matcher) was used to extract and verify the DNS evidence. AI assisted with scripting, troubleshooting and drafting.
